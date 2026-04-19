@@ -1,0 +1,62 @@
+{
+  "name": "vscode-doc-translator",
+  "displayName": "Doc Translator",
+  "description": "Translate English .md and .txt documents to Chinese using AI models",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:vscode-doc-translator.translate",
+    "onCommand:vscode-doc-translator.configure"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-doc-translator.translate",
+        "title": "Translate to Chinese"
+      }
+    ],
+    "configuration": {
+      "title": "Doc Translator",
+      "properties": {
+        "vscode-doc-translator.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key for translation service (Minimax or OpenAI-compatible)"
+        },
+        "vscode-doc-translator.apiEndpoint": {
+          "type": "string",
+          "default": "https://api.minimaxi.com/v1/chat/completions",
+          "description": "OpenAI-compatible API endpoint URL"
+        },
+        "vscode-doc-translator.model": {
+          "type": "string",
+          "default": "minimax/text-01",
+          "description": "Model name for translation (e.g., minimax/text-01, gpt-3.5-turbo)"
+        }
+      }
+    }
+  },
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.75.0",
+    "@vscode/test-electron": "^2.3.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0",
+    "openai": "^6.34.0"
+  }
+}

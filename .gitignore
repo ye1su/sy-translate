@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build output
+out/
+
+# VSCode settings (personal preferences)
+.vscode/settings.json
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# AI assistant scaffolding (development artifacts)
+.specify/
+.claude/
+
+# Release artifacts
+*.vsix
+
+# Specs (development documentation)
+specs/
+
+# Test artifacts
+*.test.*.*
