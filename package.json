@@ -1,8 +1,13 @@
 {
-  "name": "vscode-doc-translator",
+  "name": "sy-translator",
   "displayName": "Doc Translator",
   "description": "Translate English .md and .txt documents to Chinese using AI models",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "publisher": "yesu666",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ye1su/sy-translate.git"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -11,33 +16,37 @@
   ],
   "activationEvents": [
     "onStartupFinished",
-    "onCommand:vscode-doc-translator.translate",
-    "onCommand:vscode-doc-translator.configure"
+    "onCommand:sy-translator.translate",
+    "onCommand:sy-translator.configure"
   ],
   "contributes": {
     "commands": [
       {
-        "command": "vscode-doc-translator.translate",
+        "command": "sy-translator.translate",
         "title": "Translate to Chinese"
+      },
+      {
+        "command": "sy-translator.configure",
+        "title": "Configure sy-translator"
       }
     ],
     "configuration": {
-      "title": "Doc Translator",
+      "title": "sy-translator",
       "properties": {
-        "vscode-doc-translator.apiKey": {
+        "sy-translator.apiKey": {
           "type": "string",
           "default": "",
-          "description": "API key for translation service (Minimax or OpenAI-compatible)"
+          "description": "API key for translation service"
         },
-        "vscode-doc-translator.apiEndpoint": {
+        "sy-translator.apiEndpoint": {
           "type": "string",
-          "default": "https://api.minimaxi.com/v1/chat/completions",
-          "description": "OpenAI-compatible API endpoint URL"
+          "default": "",
+          "description": "API endpoint URL (e.g., https://api.minimaxi.com/v1)"
         },
-        "vscode-doc-translator.model": {
+        "sy-translator.model": {
           "type": "string",
-          "default": "minimax/text-01",
-          "description": "Model name for translation (e.g., minimax/text-01, gpt-3.5-turbo)"
+          "default": "",
+          "description": "Model name for translation"
         }
       }
     }

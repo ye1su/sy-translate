@@ -1,0 +1,17 @@
+.gitignore
+.git/**
+.github/
+.vscode/
+.claude/
+.specify/
+specs/
+src/
+tsconfig.json
+*.ts
+*.map
+*.md
+LICENSE*
+node_modules/@types/
+node_modules/.bin/
+**/*.test.*
+**/*.spec.*

@@ -18,7 +18,7 @@ export async function translateChunk(
   chunk: TranslationChunk,
   apiKey: string,
   apiEndpoint: string,
-  model: string = 'minimax/text-01'
+  model: string = 'MiniMax-M2.7'
 ): Promise<string> {
   const client = new OpenAI({
     apiKey: apiKey,
@@ -83,7 +83,7 @@ export async function translateChunks(
   chunks: TranslationChunk[],
   apiKey: string,
   apiEndpoint: string,
-  model: string = 'minimax/text-01',
+  model: string = 'MiniMax-M2.7',
   onProgress?: (chunkIndex: number, totalChunks: number) => void
 ): Promise<string> {
   const results: string[] = [];

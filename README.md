@@ -1,4 +1,4 @@
-# VSCode 文档翻译器 (vscode-doc-translator)
+# VSCode 文档翻译器 (sy-translator)
 
 使用 AI 模型（MiniMax、OpenAI 或 OpenAI 兼容接口）将英文 .md 和 .txt 文档翻译为简体中文的 VSCode 扩展。
 
@@ -53,9 +53,9 @@
 
 ```json
 {
-  "vscode-doc-translator.apiKey": "your-api-key",
-  "vscode-doc-translator.apiEndpoint": "https://api.minimaxi.com/v1",
-  "vscode-doc-translator.model": "MiniMax-Text-01"
+  "sy-translator.apiKey": "your-api-key",
+  "sy-translator.apiEndpoint": "https://api.minimaxi.com/v1",
+  "sy-translator.model": "MiniMax-M2.7"
 }
 ```
 

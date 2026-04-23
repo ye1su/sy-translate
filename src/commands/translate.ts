@@ -63,13 +63,13 @@ export async function translateDocument(): Promise<void> {
   const content = editor.document.getText();
 
   // Get API configuration
-  const config = vscode.workspace.getConfiguration('vscode-doc-translator');
+  const config = vscode.workspace.getConfiguration('sy-translator');
   const apiKey = config.get<string>('apiKey', '');
-  const apiEndpoint = config.get<string>('apiEndpoint', 'https://api.minimaxi.com/v1');
-  const model = config.get<string>('model', 'minimax/text-01');
+  const apiEndpoint = config.get<string>('apiEndpoint', '');
+  const model = config.get<string>('model', '');
 
-  if (!apiKey) {
-    vscode.window.showInformationMessage('Please configure your API key in VSCode settings (vscode-doc-translator.apiKey).');
+  if (!apiKey || !apiEndpoint || !model) {
+    vscode.window.showInformationMessage('Please configure API key, endpoint and model in VSCode settings (sy-translator).');
     return;
   }
 

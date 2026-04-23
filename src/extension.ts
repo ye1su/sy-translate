@@ -5,22 +5,30 @@ import * as path from 'path';
 export function activate(context: vscode.ExtensionContext) {
   // Register translate command
   const translateCommand = vscode.commands.registerCommand(
-    'vscode-doc-translator.translate',
+    'sy-translator.translate',
     async () => {
       const { translateDocument } = await import('./commands/translate');
       await translateDocument();
     }
   );
 
+  // Register configure command
+  const configureCommand = vscode.commands.registerCommand(
+    'sy-translator.configure',
+    async () => {
+      await vscode.commands.executeCommand('sy-translator.showMenu');
+    }
+  );
+
   // Create status bar item
   const statusBarItem = vscode.window.createStatusBarItem(
-    'vscode-doc-translator.config',
+    'sy-translator.config',
     vscode.StatusBarAlignment.Left,
     100
   );
   statusBarItem.text = '$(translate) Translate';
   statusBarItem.tooltip = 'Click to translate or configure';
-  statusBarItem.command = 'vscode-doc-translator.showMenu';
+  statusBarItem.command = 'sy-translator.showMenu';
 
   // Get translated file path
   function getTranslatedPath(filePath: string): string {
@@ -66,12 +74,12 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Show menu command
   const showMenuCommand = vscode.commands.registerCommand(
-    'vscode-doc-translator.showMenu',
+    'sy-translator.showMenu',
     async () => {
-      const config = vscode.workspace.getConfiguration('vscode-doc-translator');
+      const config = vscode.workspace.getConfiguration('sy-translator');
       const apiKey = config.get<string>('apiKey', '');
-      const apiEndpoint = config.get<string>('apiEndpoint', 'https://api.minimaxi.com/v1');
-      const model = config.get<string>('model', 'MiniMax-M2.01');
+      const apiEndpoint = config.get<string>('apiEndpoint', '');
+      const model = config.get<string>('model', '');
 
       const editor = vscode.window.activeTextEditor;
       const currentFilePath = editor?.document.uri.fsPath || '';
@@ -143,7 +151,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Update status bar display
   function updateStatusBar() {
-    const config = vscode.workspace.getConfiguration('vscode-doc-translator');
+    const config = vscode.workspace.getConfiguration('sy-translator');
     const apiKey = config.get<string>('apiKey', '');
     if (apiKey) {
       statusBarItem.text = '$(translate) Translate';
@@ -158,6 +166,7 @@ export function activate(context: vscode.ExtensionContext) {
   statusBarItem.show();
 
   context.subscriptions.push(translateCommand);
+  context.subscriptions.push(configureCommand);
   context.subscriptions.push(showMenuCommand);
   context.subscriptions.push(statusBarItem);
 }
